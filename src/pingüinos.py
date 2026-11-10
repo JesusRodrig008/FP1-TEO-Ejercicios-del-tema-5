@@ -1,4 +1,5 @@
-from collections import namedtuple
+from collections import namedtuple, defaultdict
+
 import csv
 
 Penguin = namedtuple("Penguin", [
@@ -65,7 +66,15 @@ def calcula_media_masa_corporal_por_especie(pingüinos: list[Penguin]) -> dict[s
     dict[str, float]: Diccionario que asocia cada especie de pingüino con su masa corporal media.
     """
     # TODO: Implementar la función
-    pass
+    pingüinos_por_especies = defaultdict(list)
+    for p in pingüinos:
+        if p.body_mass_g != None:
+            pingüinos_por_especies[p.especies].append(p.body_mass_g)
+    res = {}
+    for especie,pesos in pingüinos_por_especies.items():
+        res[especie] = sum(pesos) / len(pesos)
+
+    
 
 def calcula_minimo_maximo_pico_por_especie(pingüinos: list[Penguin]) -> dict[str, tuple[float, float]]:
     """
@@ -79,7 +88,15 @@ def calcula_minimo_maximo_pico_por_especie(pingüinos: list[Penguin]) -> dict[st
                                     que contiene la longitud mínima y máxima del pico.
     """
     # TODO: Implementar la función
-    pass
+    pingüinos_por_especies = defaultdict(list)
+    for p in pingüinos:
+        if p.bill_length_mm != None:
+            pingüinos_por_especies[p.species].append(p.bill_length_mm)
+    res={}
+    for especies,longitudes in pingüinos_por_especies.items():
+        res[especies] = min(longitudes), max(longitudes)
+    return res
+    
 
 
 def cuenta_pingüinos_por_especie_filtro(pingüinos: list[Penguin], filtra_isla: str | None = None) -> dict[str, int]:
