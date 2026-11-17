@@ -62,7 +62,13 @@ def calcula_distancia_media_frecuencias(freq1: dict[str, float], freq2: dict[str
         Distancia media entre los dos vectores de frecuencias, o 0.0 si ambos diccionarios están vacíos.
     """
     # TODO: Implementar la función
-    pass
+    if len(freq1) == 0 and len(freq2) == 0:
+        return 0.0
+    todos_bigramas = set(freq1).union(set(freq2))
+    suma_diferencias=0
+    for bigrama in todos_bigramas:
+        suma_diferencias += abs(freq1.get(bigrama, 0)-freq2.get(bigrama,0))
+    return suma_diferencias/len(todos_bigramas)
 
 def identifica_idioma(textos_ejemplo: dict[str, str], texto_a_identificar: str) -> str:
     """
@@ -76,7 +82,15 @@ def identifica_idioma(textos_ejemplo: dict[str, str], texto_a_identificar: str) 
     Devuelve:
         El idioma identificado del texto.
     """
-    # TODO: Implementar la función
+    #1-Obtener el diccionario de frecuencias para texto_a_identificar ( dic_objetivo)
+    #Recorrer el diccionario textos_ejemolos
+    #Obtener el diccionario de freci¡uencias para el idioma actual (dic_idioma)
+    #Calcula la distancia entre dic_idioma y dic_objetivo
+    #Guardamos en una lista (distancia, identificador_idioma)
+    #Buscar el mínimo de la lista ( menor distancia)
+    #Devolver el identificador de idioma
+    dic_objetivo = construye_frecuencias_bigramas(texto_a_identificar)
+
     pass
 
 
